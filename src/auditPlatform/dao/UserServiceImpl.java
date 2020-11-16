@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         if(rs.next()) {
             resultUser=new User();
             resultUser.setId(rs.getInt("id"));
-            resultUser.setUsername(rs.getString("userName"));
+            resultUser.setUsername(rs.getString("username"));
             resultUser.setPassword(rs.getString("password"));
         }
         return resultUser;

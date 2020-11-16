@@ -21,6 +21,18 @@ public class User {
         this.postbox = postbox;
     }
 
+    public User(String username, String password, String tel, String postbox) {
+        this.username = username;
+        this.password = password;
+        this.tel = tel;
+        this.postbox = postbox;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
