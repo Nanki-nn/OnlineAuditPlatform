@@ -45,4 +45,12 @@ public interface CommentService {
      */
     List<Comment> findCommentByProblemsId(Connection con,int problemsId);
 
+    /**
+     * 根据用户ID查找评论
+     * @param con
+     * @param userId
+     * @return
+     */
+    List<Comment> findCommentByUserId(Connection con,int userId);
+
 }
