@@ -1,6 +1,6 @@
 package auditPlatform.dao;
 
-import auditPlatform.dao.impl.answerService;
+import auditPlatform.dao.impl.AnswerService;
 
-public class AnswerServiceImpl implements answerService {
+public class AnswerServiceImpl implements AnswerService {
 }
