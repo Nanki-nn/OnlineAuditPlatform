@@ -1,6 +1,6 @@
 package auditPlatform.pojo;
 
-public class answer {
+public class Answer {
     private int id;
     private int problemsId;
     private String txt;
@@ -10,10 +10,10 @@ public class answer {
     private int thumbsUpNum;
     private int commentNum;
 
-    public answer() {
+    public Answer() {
     }
 
-    public answer(int id, int problemsId, String txt, int userId, int viewNum, int collectNum, int thumbsUpNum, int commentNum) {
+    public Answer(int id, int problemsId, String txt, int userId, int viewNum, int collectNum, int thumbsUpNum, int commentNum) {
         this.id = id;
         this.problemsId = problemsId;
         this.txt = txt;

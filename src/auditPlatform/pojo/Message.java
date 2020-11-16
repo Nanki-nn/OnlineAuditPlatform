@@ -1,15 +1,15 @@
 package auditPlatform.pojo;
 
-public class message {
+public class Message {
     private int id;
     private int userIdOne;
     private int userIdTwo;
     private String comment;
 
-    public message() {
+    public Message() {
     }
 
-    public message(int id, int userIdOne, int userIdTwo, String comment) {
+    public Message(int id, int userIdOne, int userIdTwo, String comment) {
         this.id = id;
         this.userIdOne = userIdOne;
         this.userIdTwo = userIdTwo;

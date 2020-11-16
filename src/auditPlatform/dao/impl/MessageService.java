@@ -1,4 +1,4 @@
 package auditPlatform.dao.impl;
 
-public interface messageService {
+public interface MessageService {
 }

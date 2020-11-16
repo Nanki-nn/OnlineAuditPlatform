@@ -1,4 +1,4 @@
 package auditPlatform.dao.impl;
 
-public interface problemsService {
+public interface CommentService {
 }

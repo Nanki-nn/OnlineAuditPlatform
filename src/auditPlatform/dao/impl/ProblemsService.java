@@ -1,5 +1,4 @@
 package auditPlatform.dao.impl;
 
-public interface answerService {
-
+public interface ProblemsService {
 }

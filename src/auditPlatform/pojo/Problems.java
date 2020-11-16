@@ -1,6 +1,6 @@
 package auditPlatform.pojo;
 
-public class problems {
+public class Problems {
     private int id;
     private int userId;
     private String txt;
@@ -8,10 +8,10 @@ public class problems {
     private int highestScore;
     private int status;
 
-    public problems() {
+    public Problems() {
     }
 
-    public problems(int id, int userId, String txt, int answerNum, int highestScore, int status) {
+    public Problems(int id, int userId, String txt, int answerNum, int highestScore, int status) {
         this.id = id;
         this.userId = userId;
         this.txt = txt;
@@ -70,7 +70,7 @@ public class problems {
 
     @Override
     public String toString() {
-        return "problems{" +
+        return "Problems{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", txt='" + txt + '\'' +

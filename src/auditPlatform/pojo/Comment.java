@@ -1,16 +1,16 @@
 package auditPlatform.pojo;
 
-public class comment {
+public class Comment {
     private int id;
     private int userId;
     private int problemsId;
     private String txt;
     private int thumbsUpNum;
 
-    public comment() {
+    public Comment() {
     }
 
-    public comment(int id, int userId, int problemsId, String txt, int thumbsUpNum) {
+    public Comment(int id, int userId, int problemsId, String txt, int thumbsUpNum) {
         this.id = id;
         this.userId = userId;
         this.problemsId = problemsId;
