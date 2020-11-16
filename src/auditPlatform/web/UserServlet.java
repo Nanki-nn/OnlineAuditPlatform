@@ -1,8 +1,10 @@
 package auditPlatform.web;
 
 
+import auditPlatform.dao.UserServiceImpl;
+import auditPlatform.dao.impl.UserService;
 import com.google.gson.Gson;
-import auditPlatform.dao.UserService;
+
 import auditPlatform.pojo.User;
 import auditPlatform.utils.JdbcUtil;
 
@@ -15,8 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserServlet extends BaseServlet {
-    protected void existsUsername(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService=new UserService();
+    protected void existsUsername(HttpServletRequest req, HttpServletResponse resp) {
+        UserService userService=new UserServiceImpl();
         JdbcUtil dbutil=new JdbcUtil();
         Connection con;
 
@@ -40,7 +42,7 @@ public class UserServlet extends BaseServlet {
             e.printStackTrace();
         }
     }
-    protected void code(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void code(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String verifyCode = req.getParameter("code");
         String kaptchaValue = (String) req.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
 //        System.out.println("用户输入"+verifyCode+"验证码"+kaptchaValue);
@@ -55,8 +57,8 @@ public class UserServlet extends BaseServlet {
         String json=gson.toJson(map);
         resp.getWriter().write(json);
     }
-    protected void register(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService=new UserService();
+    protected void register(HttpServletRequest req, HttpServletResponse resp) {
+        UserService userService=new UserServiceImpl();
         JdbcUtil dbutil=new JdbcUtil();
         Connection con;
 
@@ -70,7 +72,7 @@ public class UserServlet extends BaseServlet {
                 int registerU=userService.registerUser(con,new User(username,md5password));
                 if(registerU>0){
                     User uRegister=userService.existsUsername(con, username);
-                    userService.addResume(con,uRegister);
+                    //userService.addResume(con,uRegister);
                     req.getRequestDispatcher("/pages/login.jsp").forward(req,resp);
                 }else{
                     req.getRequestDispatcher("/pages/register.jsp").forward(req,resp);
@@ -103,7 +105,7 @@ public class UserServlet extends BaseServlet {
         req.getRequestDispatcher("/pages/end.jsp").forward(req,resp);
     }
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService=new UserService();
+        UserService userService=new UserServiceImpl();
         JdbcUtil dbutil=new JdbcUtil();
         Connection con;
         String username=req.getParameter("username");

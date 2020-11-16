@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class JdbcUtil {
-    private String dbUrl="jdbc:mysql://localhost:3306/resume?serverTimezone=UTC";
+    private String dbUrl="jdbc:mysql://localhost:3306/assessment_platform?serverTimezone=UTC";
     private String dbUserName="root";
     private String dbPassword="";
     private String jdbcName="com.mysql.cj.jdbc.Driver";
