@@ -37,4 +37,12 @@ public interface ProblemsService {
      */
     Problems findProblemsById(Connection con,int id);
 
+    /**
+     * 根据题目Id查找对应的标准解id
+     * @param con
+     * @param problemsId
+     * @return
+     */
+    int findAnswerIdByProblemsId(Connection con,int problemsId);
+
 }

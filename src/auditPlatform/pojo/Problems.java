@@ -7,17 +7,19 @@ public class Problems {
     private int answerNum;
     private int highestScore;
     private int status;
+    private int answerId;
 
     public Problems() {
     }
 
-    public Problems(int id, int userId, String txt, int answerNum, int highestScore, int status) {
+    public Problems(int id, int userId, String txt, int answerNum, int highestScore, int status, int answerId) {
         this.id = id;
         this.userId = userId;
         this.txt = txt;
         this.answerNum = answerNum;
         this.highestScore = highestScore;
         this.status = status;
+        this.answerId = answerId;
     }
 
     public int getId() {
@@ -68,6 +70,14 @@ public class Problems {
         this.status = status;
     }
 
+    public int getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
+    }
+
     @Override
     public String toString() {
         return "Problems{" +
@@ -77,6 +87,7 @@ public class Problems {
                 ", answerNum=" + answerNum +
                 ", highestScore=" + highestScore +
                 ", status=" + status +
+                ", answerId=" + answerId +
                 '}';
     }
 }
