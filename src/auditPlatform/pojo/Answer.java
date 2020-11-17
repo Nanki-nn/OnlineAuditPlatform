@@ -1,5 +1,7 @@
 package auditPlatform.pojo;
 
+import java.sql.Date;
+
 public class Answer {
     private int id;
     private int problemsId;
@@ -9,6 +11,8 @@ public class Answer {
     private int collectNum;
     private int thumbsUpNum;
     private int commentNum;
+    private int status;
+    private Date date;
 
     public Answer() {
     }
@@ -22,6 +26,19 @@ public class Answer {
         this.collectNum = collectNum;
         this.thumbsUpNum = thumbsUpNum;
         this.commentNum = commentNum;
+    }
+
+    public Answer(int id, int problemsId, String txt, int userId, int viewNum, int collectNum, int thumbsUpNum, int commentNum, int status, Date date) {
+        this.id = id;
+        this.problemsId = problemsId;
+        this.txt = txt;
+        this.userId = userId;
+        this.viewNum = viewNum;
+        this.collectNum = collectNum;
+        this.thumbsUpNum = thumbsUpNum;
+        this.commentNum = commentNum;
+        this.status = status;
+        this.date = date;
     }
 
     public int getId() {
@@ -88,9 +105,25 @@ public class Answer {
         this.commentNum = commentNum;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
-        return "answer{" +
+        return "Answer{" +
                 "id=" + id +
                 ", problemsId=" + problemsId +
                 ", txt='" + txt + '\'' +
@@ -99,6 +132,8 @@ public class Answer {
                 ", collectNum=" + collectNum +
                 ", thumbsUpNum=" + thumbsUpNum +
                 ", commentNum=" + commentNum +
+                ", status=" + status +
+                ", date=" + date +
                 '}';
     }
 }

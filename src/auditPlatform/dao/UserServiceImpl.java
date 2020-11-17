@@ -16,15 +16,15 @@ public class UserServiceImpl implements UserService {
     /**
      * 判断用户名是否存在
      * @param con
-     * @param name username用户名
+     * @param account account用户名
      * @return 空 或 用户所有信息
      * @throws SQLException
      */
-    public User existsUsername(Connection con, String name) throws SQLException {
+    public User existsUsername(Connection con, String account) throws SQLException {
         User resultUser=null;
-        String sql="select * from user where username=?";
+        String sql="select * from user where account=?";
         PreparedStatement pstmt=con.prepareStatement(sql);
-        pstmt.setString(1, name);
+        pstmt.setString(1, account);
         ResultSet rs=pstmt.executeQuery();
         if(rs.next()) {
             resultUser=new User();

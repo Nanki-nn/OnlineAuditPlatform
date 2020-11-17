@@ -1,11 +1,15 @@
 package auditPlatform.pojo;
 
+import java.sql.Date;
+
 public class Comment {
     private int id;
     private int userId;
     private int problemsId;
     private String txt;
     private int thumbsUpNum;
+    private Date date;
+    private String image;
 
     public Comment() {
     }
@@ -16,6 +20,16 @@ public class Comment {
         this.problemsId = problemsId;
         this.txt = txt;
         this.thumbsUpNum = thumbsUpNum;
+    }
+
+    public Comment(int id, int userId, int problemsId, String txt, int thumbsUpNum, Date date, String image) {
+        this.id = id;
+        this.userId = userId;
+        this.problemsId = problemsId;
+        this.txt = txt;
+        this.thumbsUpNum = thumbsUpNum;
+        this.date = date;
+        this.image = image;
     }
 
     public int getId() {
@@ -58,14 +72,32 @@ public class Comment {
         this.thumbsUpNum = thumbsUpNum;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
-        return "comment{" +
+        return "Comment{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", problemsId=" + problemsId +
                 ", txt='" + txt + '\'' +
                 ", thumbsUpNum=" + thumbsUpNum +
+                ", date=" + date +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

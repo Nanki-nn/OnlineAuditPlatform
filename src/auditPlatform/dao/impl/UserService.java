@@ -11,15 +11,15 @@ public interface UserService {
     /**
      * 判断用户名是否存在
      * @param con
-     * @param name username用户名
+     * @param account account账号
      * @return 空 或 用户所有信息
      * @throws SQLException
      */
-    User existsUsername(Connection con, String name) throws SQLException;
+    User existsUsername(Connection con, String account) throws SQLException;
     /**
      * 用户登录
      * @param con
-     * @param user username,password
+     * @param user
      * @return 用户所有信息
      * @throws SQLException
      */
@@ -27,7 +27,7 @@ public interface UserService {
     /**
      * 用户注册
      * @param con
-     * @param user  /username,password,0,tel,postbox/
+     * @param user  /account,password,0,tel,postbox/
      * @return int 成功与否状态
      * @throws SQLException
      */
