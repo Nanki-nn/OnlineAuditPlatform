@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
         if(rs.next()) {
             resultUser=new User();
             resultUser.setId(rs.getInt("id"));
+            resultUser.setAccount((rs.getString("account")));
             resultUser.setUsername(rs.getString("username"));
             resultUser.setPassword(rs.getString("password"));
         }
@@ -38,25 +39,27 @@ public class UserServiceImpl implements UserService {
     /**
      * 用户登录
      * @param con
-     * @param user username,password
+     * @param user account,password
      * @return 用户所有信息
      * @throws SQLException
      */
     public User loginUser(Connection con,User user) throws SQLException {
         User resultUser=null;
-        String sql="select * from user where username=? and password=?";
+        String sql="select * from user where account=? and password=?";
         PreparedStatement pstmt=con.prepareStatement(sql);
-        pstmt.setString(1, user.getUsername());
+        pstmt.setString(1, user.getAccount());
         pstmt.setString(2, user.getPassword());
         ResultSet rs=pstmt.executeQuery();
         if(rs.next()) {
             resultUser=new User();
             resultUser.setId(rs.getInt("id"));
+            resultUser.setAccount((rs.getString("account")));
             resultUser.setUsername(rs.getString("username"));
             resultUser.setPassword(rs.getString("password"));
             resultUser.setAdmin(rs.getInt("admin"));
             resultUser.setTel(rs.getString("tel"));
             resultUser.setPostbox(rs.getString("postbox"));
+            resultUser.setHead(rs.getString("image"));
         }
         return resultUser;
     }
@@ -69,13 +72,14 @@ public class UserServiceImpl implements UserService {
      * @throws SQLException
      */
     public int registerUser(Connection con, User user) throws SQLException {
-        String sql="insert into user(username,password,admin,tel,postbox) values(?,?,?,?,?)";
+        String sql="insert into user(username,password,admin,tel,postbox,image) values(?,?,?,?,?,?)";
         PreparedStatement pstmt=con.prepareStatement(sql);
         pstmt.setString(1, user.getUsername());
         pstmt.setString(2, user.getPassword());
         pstmt.setInt(3, 0);
         pstmt.setString(4,user.getTel());
         pstmt.setString(5,user.getPostbox());
+        pstmt.setString(6,user.getHead());
         int rs=pstmt.executeUpdate();
         return rs;
     }

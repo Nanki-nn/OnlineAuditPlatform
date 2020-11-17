@@ -2,7 +2,6 @@ package auditPlatform.dao;
 
 import auditPlatform.dao.impl.ProblemsService;
 import auditPlatform.pojo.Problems;
-
 import java.sql.Connection;
 
 public class ProblemsServiceImpl implements ProblemsService {
@@ -24,5 +23,10 @@ public class ProblemsServiceImpl implements ProblemsService {
     @Override
     public Problems findProblemsById(Connection con, int id) {
         return null;
+    }
+
+    @Override
+    public int findAnswerIdByProblemsId(Connection con, int problemsId) {
+        return 0;
     }
 }
