@@ -3,4 +3,54 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>auditPlatform.web.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/userServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AnswerServlet</servlet-name>
+        <servlet-class>auditPlatform.web.AnswerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AnswerServlet</servlet-name>
+        <url-pattern>/answerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CommentServlet</servlet-name>
+        <servlet-class>auditPlatform.web.CommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CommentServlet</servlet-name>
+        <url-pattern>/commentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MessageServlet</servlet-name>
+        <servlet-class>auditPlatform.web.MessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/messageServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProblemsServlet</servlet-name>
+        <servlet-class>auditPlatform.web.ProblemsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProblemsServlet</servlet-name>
+        <url-pattern>/problemsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <!-- 生成图片的Servlet -->
+        <servlet-name>Kaptcha</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Kaptcha</servlet-name>
+        <url-pattern>/Kaptcha.jpg</url-pattern>
+    </servlet-mapping>
 </web-app>
