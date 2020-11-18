@@ -44,6 +44,16 @@
         <servlet-name>ProblemsServlet</servlet-name>
         <url-pattern>/problemsServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PageServlet</servlet-name>
+        <servlet-class>auditPlatform.web.PageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PageServlet</servlet-name>
+        <url-pattern>/pageServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <!-- 生成图片的Servlet -->
         <servlet-name>Kaptcha</servlet-name>

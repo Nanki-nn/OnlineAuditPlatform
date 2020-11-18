@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,10 +23,10 @@ public class UserServlet extends BaseServlet {
      * @param req username
      * @param resp
      */
-    protected void existsUsername(HttpServletRequest req, HttpServletResponse resp) {
+    protected void existsUsername(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         UserService userService=new UserServiceImpl();
         JdbcUtil dbutil=new JdbcUtil();
-        Connection con;
+        Connection con = null;
 
         String username=req.getParameter("username");
 
@@ -44,6 +45,8 @@ public class UserServlet extends BaseServlet {
             resp.getWriter().write(json);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            dbutil.closeCon(con);
         }
     }
 
@@ -74,10 +77,11 @@ public class UserServlet extends BaseServlet {
      * @param req username,password,tel,postbox
      * @param resp
      */
-    protected void register(HttpServletRequest req, HttpServletResponse resp) {
+    protected void register(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         UserService userService=new UserServiceImpl();
         JdbcUtil dbutil=new JdbcUtil();
-        Connection con;
+        Connection con = null;
+        Gson gson=new Gson();
 
         String username=req.getParameter("username");
         String password=req.getParameter("password");
@@ -88,21 +92,31 @@ public class UserServlet extends BaseServlet {
         try {
             con=dbutil.getCon();
             User u=userService.existsUsername(con, username);
-            if(u== null){
+            if(u== null){//用户不存在，可以注册
                 int registerU=userService.registerUser(con,new User(username,md5password,tel,postbox));
-                if(registerU>0){
+                if(registerU>0){//注册成功
+
                     User uRegister=userService.existsUsername(con, username);
-                    //userService.addResume(con,uRegister);
-                    req.getRequestDispatcher("/pages/login.jsp").forward(req,resp);
-                }else{
-                    req.getRequestDispatcher("/pages/register.jsp").forward(req,resp);
+                    //转换成json
+                    String json=gson.toJson(uRegister);
+                    resp.getWriter().write(json);
+
+                }else{//注册失败
+                    String status="注册失败";
+                    String json=gson.toJson(status);
+                    resp.getWriter().write(json);
                 }
 
-            }else{
-                req.getRequestDispatcher("/pages/register.jsp").forward(req,resp);
+            }else{//用户已存在不可注册
+
+                String status="用户已存在无法注册";
+                String json=gson.toJson(status);
+                resp.getWriter().write(json);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            dbutil.closeCon(con);
         }
     }
 
@@ -125,10 +139,11 @@ public class UserServlet extends BaseServlet {
      * @throws ServletException
      * @throws IOException
      */
-    protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         UserService userService=new UserServiceImpl();
         JdbcUtil dbutil=new JdbcUtil();
-        Connection con;
+        Connection con = null;
+        Gson gson=new Gson();
         String username=req.getParameter("username");
         String password=req.getParameter("password");
         String md5password=getMD5Str(password);
@@ -136,20 +151,28 @@ public class UserServlet extends BaseServlet {
         try {
             con=dbutil.getCon();
             User u=userService.existsUsername(con, username);
-            if(u!= null){
+            if(u!= null){//用户存在
                 User loginU=userService.loginUser(con,new User(username,md5password));
-                if(loginU!=null){
+                if(loginU!=null){//登录成功
+                    req.setAttribute("user",loginU);
                     req.getSession().setAttribute("user",loginU);
-                    req.getRequestDispatcher("resumeServlet?action=listwrite&id="+loginU.getId()).forward(req,resp);
-                }else{
-                    req.getRequestDispatcher("/pages/login.jsp").forward(req,resp);
+                    String json=gson.toJson(loginU);
+                    resp.getWriter().write(json);
+                }else{//登录失败
+                    String status="登录失败";
+                    String json=gson.toJson(status);
+                    resp.getWriter().write(json);
                 }
 
-            }else{
-                req.getRequestDispatcher("/pages/login.jsp").forward(req,resp);
+            }else{//用户不存在
+                String status="用户不存在";
+                String json=gson.toJson(status);
+                resp.getWriter().write(json);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            dbutil.closeCon(con);
         }
     }
 
